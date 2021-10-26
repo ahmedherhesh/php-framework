@@ -1,8 +1,11 @@
 <?php 
 require 'autoload.php';
 use Classes\DB;
-$db = new DB;
+$DB = new DB;
+$users = $DB->table('users')->where(['email','=','admin@admin.com'])->get();
 
-$db = $db->table('users')->where(['email','=','admin@admin.com'])->orderBy('id','desc')->first();
-
-echo 'email: ' . $db->email . '<br>';
+$DB = new DB;
+// $DB = $DB->table('users')->delete();
+// echo $DB;
+echo '<pre>';
+print_r($users);

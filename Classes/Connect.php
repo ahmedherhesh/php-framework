@@ -4,11 +4,10 @@ namespace Classes;
 class Connect extends Config
 {
     public $host = '127.0.0.1';
-    public $db   = 'olx-backend';
+    public $db   = 'olx';
     public $user = 'root';
     public $pass = '';
     public $con;
-    public $query;
     public function __construct()
     {
         try {
