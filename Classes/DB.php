@@ -1,9 +1,6 @@
 <?php
 
 namespace Classes;
-
-require_once 'autoload.php';
-
 use Classes\Connect;
 
 class DB extends Connect
@@ -45,7 +42,7 @@ class DB extends Connect
      // Order results
      public function orderBy($column = null, $attr = null)
      {
-          $this->query = $this->con->prepare("{$this->sql} order by $column $attr");
+          $this->query = $this->con->prepare("{$this->sql} {$this->condition} order by $column $attr");
           return $this;
      }
 
