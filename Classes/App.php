@@ -22,7 +22,7 @@ class App
     public static function run()
     {
         $path     = ltrim(self::getPath(), '/');
-        $path = str_replace(Config::$env['APP_NAME'], '', $path);
+        $path     = str_replace(Config::$env['APP_NAME'], '', $path);
         $method   = self::getMethod();
         $callback = self::$routes[$method][$path] ?? false;
         if (!$callback) {
