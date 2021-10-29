@@ -1,4 +1,4 @@
-_.select('div').on('click',function(){
+_.select('h1').on('click',function(){
     _.select(this).css({
         background:'#000',
         color: '#fff'

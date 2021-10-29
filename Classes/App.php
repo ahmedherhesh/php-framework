@@ -15,24 +15,21 @@ class App
         return substr($path, 0, $position);
     }
 
-    public static function getMethod()
-    {
-        return strtolower($_SERVER['REQUEST_METHOD']);
-    }
     public static function run()
     {
-        $path     = ltrim(self::getPath(), '/');
+        // $path     = ltrim(self::getPath(), '/'); //use this in localhost and comment next line
+        $path     = self::getPath(); //use this in server
         $path     = str_replace(Config::$env['APP_NAME'], '', $path);
-        $method   = self::getMethod();
+        $method   = strtolower($_SERVER['REQUEST_METHOD']);
+        // important 
         $callback = self::$routes[$method][$path] ?? false;
         if (!$callback) {
-            echo '404';
+            return view('errors/404');
             exit;
         }
         if (is_callable($callback)) {
-            call_user_func($callback);
+            echo call_user_func($callback);
             exit;
         }
-        
     }
 }
