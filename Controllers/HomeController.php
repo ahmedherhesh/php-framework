@@ -13,6 +13,6 @@ class HomeController
             ->where(['name_en', '!=', 'test2'])
             ->orderBy('id', 'desc')
             ->get();
-        return $cities;
+        return view('home',compact('cities'));
     }
 }

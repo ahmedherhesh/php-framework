@@ -3,15 +3,12 @@ namespace Classes;
 
 class Connect extends Config
 {
-    public $host = '127.0.0.1';
-    public $db   = 'olx';
-    public $user = 'root';
-    public $pass = '';
+
     public $con;
     public function __construct()
     {
         try {
-            $this->con = new \PDO('mysql:host=' . $this->host . ';dbname=' . $this->db, $this->user, $this->pass);
+            $this->con = new \PDO('mysql:host=' . self::$env['DB_HOST'] . ';dbname=' . self::$env['DB_NAME'], self::$env['USERNAME'], self::$env['PASSWORD']);
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }

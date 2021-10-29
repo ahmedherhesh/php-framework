@@ -1,14 +1,14 @@
 <?php
+
 namespace Classes;
-class Config{
-    public $server;
-    public function __construct()
-    {
-        $this->server = [
-            'host' => '127.0.0.1',
-            'db'   => 'olx-backend',
-            'user' => 'root',
-            'pass' => '',
-        ];
-    }
+
+class Config
+{
+    public static $env = [
+        'APP_NAME' => 'php-library',
+        'DB_HOST'  => 'localhost',
+        'DB_NAME'  => 'olx',
+        'USERNAME' => 'root',
+        'PASSWORD' => '',
+    ];
 }
