@@ -6,7 +6,7 @@ use Classes\DB;
 
 class HomeController
 {
-    public static function cities()
+    public static function index()
     {
         $cities = DB::run()->table('cities')
             ->where(['name_en', '!=', 'test1'])
