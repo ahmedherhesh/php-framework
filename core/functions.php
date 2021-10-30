@@ -17,6 +17,6 @@ function view($page,$args = [])
 
 function asset($path)
 {
-    echo "http://" . $_SERVER['HTTP_HOST'] .'/public/' . $path;
+    echo "http://" . rtrim($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],'/').'/public/' . $path;
 }
 
