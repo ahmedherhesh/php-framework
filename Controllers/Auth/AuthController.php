@@ -16,6 +16,7 @@ class AuthController
     }
     public function register()
     {
+        return view('register');
     }
     public function registerPost()
     {
