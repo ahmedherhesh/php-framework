@@ -2,6 +2,8 @@
 
 namespace Controllers\Auth;
 
+use Classes\DB;
+
 class AuthController
 {
     public function login()
@@ -10,11 +12,15 @@ class AuthController
     }
     public function loginPost()
     {
-        return 'login post';
+        $user = DB::run()->table('users')->where(['email','=',$_POST['email']])->first();
+        if($user && hash_check($_POST['password'],$user->password)){
+            return json($user);
+        }
+        return 'Email Or Password Is  Not Matched';
     }
     public function register()
     {
-        return view('register');
+        return redirect('/login');
     }
     public function registerPost()
     {
