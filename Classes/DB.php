@@ -1,6 +1,7 @@
 <?php
 
 namespace Classes;
+
 use Classes\Connect;
 
 class DB extends Connect
@@ -9,8 +10,9 @@ class DB extends Connect
      public $condition;
      public $sql;
      public $query;
-     
-     public static function run(){
+
+     public static function run()
+     {
           return new DB();
      }
      // Select table
@@ -23,20 +25,21 @@ class DB extends Connect
      }
 
      // Add conditions 
-     public function where($condition = [])
+     public function where()
      {
+          $condition = func_get_args();
           if (count($condition) === 3) {
                $operators = ['>', '<', '=', '!=', '>=', '<='];
                if (in_array($condition[1], $operators)) {
-                    if($this->condition){
+                    if ($this->condition) {
                          $this->condition   .= "AND {$condition[0]} {$condition[1]} '{$condition[2]}'";
-                    }else{
+                    } else {
                          $this->condition   = "WHERE {$condition[0]} {$condition[1]} '{$condition[2]}'";
                     }
                     $this->query = $this->con->prepare("{$this->sql} {$this->condition}");
                }
+               return $this;
           }
-          return $this;
      }
 
      // Order results
@@ -88,9 +91,9 @@ class DB extends Connect
           $increment = 1;
           foreach ($requests as $key => $value) {
                if ($increment < count($requests)) {
-                    $data .= $key . ' = ' . "'" . $value . "'" . ','; 
+                    $data .= $key . ' = ' . "'" . $value . "'" . ',';
                } else {
-                    $data .= $key . ' = ' . "'" . $value . "'"; 
+                    $data .= $key . ' = ' . "'" . $value . "'";
                }
                $increment++;
           }
