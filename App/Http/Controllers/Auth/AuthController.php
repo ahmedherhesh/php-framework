@@ -1,6 +1,8 @@
 <?php
 
-namespace Controllers\Auth;
+namespace App\Http\Controllers\Auth;
+
+use Core\Classes\Request;
 
 class AuthController
 {
@@ -8,7 +10,7 @@ class AuthController
     {
         return view('login');
     }
-    public function loginPost()
+    public function loginPost(Request $request)
     {
         if (auth()->attempt('email', 'password')) {
             return json(auth()->user);
@@ -18,7 +20,7 @@ class AuthController
     {
         return view('register');
     }
-    public function registerPost()
+    public function registerPost(Request $request)
     {
         return 'register post';
     }

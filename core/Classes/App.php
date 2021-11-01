@@ -1,10 +1,13 @@
 <?php
 
-namespace Classes;
+namespace Core\Classes;
 
 class App
 {
+
+    public static $request;
     public static $routes = [];
+
     public static function getPath()
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
@@ -27,8 +30,9 @@ class App
             return view('errors/404');
             exit;
         }
+        self::$request = new Request;
         if (is_callable($callback)) {
-            echo call_user_func($callback);
+            echo call_user_func($callback, self::$request);
             exit;
         }
     }

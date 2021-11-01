@@ -2,7 +2,7 @@
 @REM %1 %2 %3 arguments
 
 if %1  == make:controller (
-    if not exist Controllers\%2.php type nul > Controllers\%2.php
+    if not exist App\Http\Controllers\%2.php type nul > App\Http\Controllers\%2.php
 )
 if %1  == make:view (
     if not exist views\%2.php type nul > views\%2.php 

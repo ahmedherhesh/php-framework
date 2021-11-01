@@ -1,8 +1,8 @@
 <?php
 
-use Classes\Route;
-use Controllers\Auth\AuthController;
-use Controllers\HomeController;
+use Core\Classes\Route;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [AuthController::class, 'login']);

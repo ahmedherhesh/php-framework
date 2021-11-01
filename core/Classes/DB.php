@@ -1,8 +1,6 @@
 <?php
 
-namespace Classes;
-
-use Classes\Connect;
+namespace Core\Classes;
 
 class DB extends Connect
 {

@@ -1,5 +1,5 @@
 <?php
 require_once 'core/init.php';
 
-use Classes\App;
+use Core\Classes\App;
 App::run();

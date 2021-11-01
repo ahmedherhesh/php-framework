@@ -1,6 +1,6 @@
 <?php
 
-use Classes\Auth;
+use Core\Classes\Auth;
 
 session_start();
 function json($value, $status = 200)
