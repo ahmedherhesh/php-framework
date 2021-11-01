@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Resources\UserResources;
 use Core\Classes\Request;
 
 class AuthController
@@ -13,7 +14,7 @@ class AuthController
     public function loginPost(Request $request)
     {
         if (auth()->attempt('email', 'password')) {
-            return json(auth()->user);
+            return json(new UserResources(auth()->user));
         };
     }
     public function register()
