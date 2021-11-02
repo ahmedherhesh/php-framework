@@ -36,13 +36,7 @@ function session($name, $value = null)
     }
     $_SESSION[$name] = $value;
 }
-function error($field)
-{
-    if (session($field)) {
-        echo session($field);
-        session_forget($field);
-    }
-}
+
 function session_forget($name)
 {
     unset($_SESSION[$name]);
@@ -57,6 +51,57 @@ function hash_check($password = null, $hash = null)
 function bcrypt($password = null)
 {
     echo password_hash($password, PASSWORD_DEFAULT);
+}
+$errors = [];
+function validate_add($key, $item)
+{
+    global $errors;
+    if (!isset($_REQUEST[$key]) || empty($_REQUEST[$key])) {
+        if ($item == 'required') {
+            $errors['messages'][$key][] =  'this ' . $key . ' field is required';
+        }
+    } else {
+
+        if (substr($item, 0, 3) == 'max') {
+            $value = substr($item, 4);
+            if (strlen($_REQUEST[$key]) > $value) {
+                $errors['messages'][$key][] =  'this ' . $key . ' field is max length ' . $value;
+            }
+        }
+        if (substr($item, 0, 3) == 'min') {
+            $value = substr($item, 4);
+            if (strlen($_REQUEST[$key]) < $value) {
+                $errors['messages'][$key][] =  'this ' . $key . ' field is min length ' . $value;
+            }
+        }
+        if ($item == 'string') {
+            if (gettype($_REQUEST[$key]) !== $item) {
+                $errors['messages'][$key][] =  'this ' . $key . ' field  must be a string';
+            }
+        }
+        if ($item == 'integer' || $item == 'int') {
+            if (gettype($_REQUEST[$key]) !== 'integer') {
+                $errors['messages'][$key][] =  'this ' . $key . ' field  must be a integer';
+            }
+        }
+    }
+}
+function validate($array = [])
+{
+    global $errors;
+    foreach ($array as $key => $arr) {
+        foreach (explode('|', $arr) as $item) {
+            validate_add($key, $item);
+        }
+    }
+    return $errors;
+}
+function error($field)
+{
+    if (session($field)) {
+        echo session($field);
+        session_forget($field);
+    }
 }
 //Auth
 
