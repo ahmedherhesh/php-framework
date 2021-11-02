@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Classes\DB;
+use App\Models\City;
 
 class HomeController
 {
     public static function index()
     {
-        $cities = DB::run()->table('cities')
-            ->where('name_en','!=','test1')
-            ->where('name_en','!=','test2')
-            ->orderBy('id', 'desc')
-            ->get();
-        return view('home',compact('cities'));
+        $cities = new City();
+        $cities = $cities::run()->get();
+        return view('home', compact('cities'));
     }
 }
