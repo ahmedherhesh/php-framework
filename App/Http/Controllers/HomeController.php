@@ -10,8 +10,9 @@ class HomeController
     {
 
         $validate  = validate([
-            'code' => 'required|max:8|min:4|int',
-            'test' => 'required|max:8|min:4|string',
+            'code'   => 'required|max:8|min:4|int',
+            'mobile' => 'required|max:8|min:4|string',
+            'name'   => 'required|max:8|min:4|string',
         ]);
         
         if($validate){
